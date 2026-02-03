@@ -1,42 +1,169 @@
-<script>
-  function yesClicked() {
-    document.body.innerHTML = `
-      <div style="
-        height:100vh;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-        font-family: 'Segoe UI', sans-serif;
-        text-align:center;
-      ">
-        <div class="heartbeat">
-          <img src="secret.jpg" style="
-            width:180px;
-            border-radius:20px;
-            margin-bottom:20px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.2);
-          ">
-          <h1 style="color:#ff4d6d; margin-bottom:8px;">
-            Gujju Gilmaaji 💖
-          </h1>
-          <p style="
-            font-size:20px;
-            color:#333;
-            margin:0;
-          ">
-            You + Me.<br>No conditions.
-          </p>
-          <p style="
-            font-size:14px;
-            color:#777;
-            margin-top:10px;
-            letter-spacing:1px;
-          ">
-            Happy Valentine’s Day
-          </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💘</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      width: 350px;
+    }
+
+    img {
+      width: 120px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 90px;
+      width: 100%;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      position: absolute;
+      transition: transform 0.15s ease;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+      left: 30%;
+    }
+
+    #no {
+      background-color: #ccc;
+      left: 55%;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(-3px, 2px); }
+      50% { transform: translate(3px, -2px); }
+      75% { transform: translate(-2px, -3px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .shake {
+      animation: shake 0.3s;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.05); }
+      40% { transform: scale(1); }
+      60% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    .heartbeat {
+      animation: heartbeat 1.5s infinite;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <img src="cats.jpg" alt="cats">
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="buttons">
+      <button id="yes" onclick="yesClicked()">Yes 💕</button>
+      <button id="no" onmouseover="moveNo()">No 😜</button>
+    </div>
+  </div>
+
+  <script>
+    let speed = 40;
+    let count = 0;
+
+    const messages = [
+      "No 😜",
+      "pls stop 🥺",
+      "hey 😳",
+      "why u chasing me 😭",
+      "ok chill 😵",
+      "THIS IS HARASSMENT 😤"
+    ];
+
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+
+      speed += 15;
+      count++;
+
+      noBtn.innerText = messages[Math.min(count, messages.length - 1)];
+
+      const x = Math.random() * speed - speed / 2;
+      const y = Math.random() * (speed / 2) - speed / 4;
+
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      noBtn.classList.remove("shake");
+      void noBtn.offsetWidth;
+      noBtn.classList.add("shake");
+    }
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+          font-family: 'Segoe UI', sans-serif;
+          text-align:center;
+        ">
+          <div class="heartbeat">
+            <img src="secret.jpg" style="
+              width:180px;
+              border-radius:20px;
+              margin-bottom:20px;
+              box-shadow:0 10px 25px rgba(0,0,0,0.2);
+            ">
+            <h1 style="color:#ff4d6d; margin-bottom:8px;">
+              Gujju Gilmaaji 💖
+            </h1>
+            <p style="font-size:20px; color:#333; margin:0;">
+              You + Me.<br>No conditions.
+            </p>
+            <p style="font-size:14px; color:#777; margin-top:10px;">
+              Happy Valentine’s Day
+            </p>
+          </div>
         </div>
-      </div>
-    `;
-  }
-</script>
+      `;
+    }
+  </script>
+
+</body>
+</html>
